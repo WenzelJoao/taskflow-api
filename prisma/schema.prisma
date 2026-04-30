@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../prisma/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Usuario { 
+  id    Int     @id @default(autoincrement()) 
+  email String  @unique
+  nome  String?
+  senha String
+  tokens Token[]
+
+  @@map("Usuario")
+} 
+
+model Tarefa { 
+  id        Int     @id @default(autoincrement()) 
+  titulo     String
+  descricao   String
+  data_vencimento DateTime
+  prioridade String
+
+  @@map("Tarefa")
+} 
+
+model Projeto {
+  id Int  @id @default(autoincrement())
+  titulo String
+  area_conhecimento String
+  data_criacao DateTime @default(now())
+  data_vencimento DateTime 
+  descricao String
+
+  @@map("Projeto")
+}
+
+enum Tipo_token {
+  ACESSO
+  REFRESH
+}
+
+model Token {
+  id        Int        @id @default(autoincrement())
+  token     String     @db.VarChar(255)
+  tipo      Tipo_token @default(ACESSO)
+  revogado  Boolean    @default(false)
+  expira_em DateTime
+  usuarioId Int
+  usuario   Usuario    @relation(fields: [usuarioId], references: [id])
+
+  @@map("token")
+}
