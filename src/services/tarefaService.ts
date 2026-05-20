@@ -1,7 +1,7 @@
 import { tarefaRepository } from "../repositories/tarefaRepository";
 
 export const criarTarefa = async (payload: any) => {
-  // basic validation
+
   if (!payload.titulo) throw new Error("titulo is required");
   if (!payload.descricao) throw new Error("descricao is required");
   if (!payload.data_vencimento) throw new Error("data_vencimento is required");

@@ -1,5 +1,5 @@
 import { prisma } from "../prisma/prisma";
-import type { PrismaClient, Prisma, Usuario } from "../prisma/generated/prisma/client";
+import type { PrismaClient, Prisma, Usuario, Tarefa } from "../prisma/generated/prisma/client";
 
 export class TarefaRepository {
   constructor(private readonly prisma: PrismaClient) {
@@ -15,7 +15,7 @@ export class TarefaRepository {
   }
 
   async criarTarefa(dadosTarefa: any) {
-    // mínimo de logging/validação
+
     console.log("criando tarefa", dadosTarefa);
     return await this.prisma.tarefa.create({
       data: {
@@ -29,7 +29,7 @@ export class TarefaRepository {
     })
   }
 
-  async atualizarTarefa(idTarefa: number, dadosParaAtualizar: Omit<Usuario, 'id'>) {
+  async atualizarTarefa(idTarefa: number, dadosParaAtualizar: Omit<Tarefa, 'id'>) {
 
     const tarefaAtualizada = await prisma.tarefa.update({
       data: {
