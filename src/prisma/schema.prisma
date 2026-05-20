@@ -41,6 +41,8 @@ model Projeto {
   data_vencimento DateTime 
   descricao String
 
+  tarefas Tarefa[]
+
   @@map("Projeto")
 }
 
