@@ -22,6 +22,38 @@ class AuthController {
         }
     }
 
+    async editar(req: Request, res: Response) {
+
+        try {
+
+            const id = Number(req.params.id);
+
+            const usuarioAtualizado =
+                await this.service.editar(
+                    id,
+                    req.body
+                );
+
+            const {
+                senha,
+                ...usuarioSemSenha
+            } = usuarioAtualizado;
+
+            return res.status(200).json({
+                message: "Usuário atualizado com sucesso!",
+                data: usuarioSemSenha
+            });
+
+        } catch (error: any) {
+
+            console.log(error);
+
+            return res.status(400).json({
+                error: error.message
+            });
+        }
+    }
+
     async logar(req: Request, res: Response) {
         try {
             const dadosUsuario = req.body as Partial<Usuario>

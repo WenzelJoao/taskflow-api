@@ -9,6 +9,17 @@ export class AuthService {
     }
 
     async cadastrar(dadosUsuario: Usuario) {
+
+        const usuarioExiste =
+            await this.repository.existeUsuario(
+                dadosUsuario.email || ""
+            );
+
+        if (usuarioExiste) {
+            throw new Error("Usuário já cadastrado");
+        }
+
+
         const hash = await createHash(dadosUsuario.senha);
 
         const usuarioCriado = await this.repository.cadastrar({
@@ -17,6 +28,23 @@ export class AuthService {
             senha: hash
         })
         return usuarioCriado
+    }
+
+    async editar(id: number, dadosUsuario: Partial<Usuario>) {
+
+        if (dadosUsuario.senha) {
+
+            const hash = await createHash(
+                dadosUsuario.senha
+            );
+
+            dadosUsuario.senha = hash;
+        }
+
+        return await this.repository.editar(
+            id,
+            dadosUsuario
+        );
     }
 
     async logar(dadosUsuario: Partial<Usuario>) {

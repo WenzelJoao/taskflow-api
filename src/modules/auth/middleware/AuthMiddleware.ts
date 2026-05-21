@@ -14,7 +14,8 @@ export function auth(req: Request, res: Response, next: NextFunction) {
         const payload = verificarTokenAcesso(token)
         if (!payload) return res.status(401).json({
             error: "invalid token"
-        })
+        });
+        (req as any).usuario = payload
         next();
     } catch {
         return res.status(401).json({

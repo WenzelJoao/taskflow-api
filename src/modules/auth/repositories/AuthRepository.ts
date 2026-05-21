@@ -23,6 +23,16 @@ export class AuthRepository {
         })
     }
 
+    async editar(id: number, dadosUsuario: Partial<Usuario>) {
+
+        return await this.prisma.usuario.update({
+            where: {
+                id
+            },
+            data: dadosUsuario
+        });
+    }
+
     async criarToken(dadosToken: Omit<Token, "id" | "revogado">) {
         return await this.prisma.token.create({
             data: dadosToken
