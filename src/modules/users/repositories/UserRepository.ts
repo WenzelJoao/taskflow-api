@@ -13,12 +13,21 @@ export class UserRepository {
     }
 
     async buscarUsuarioId(idUsurio: number) {
-        const usuario = await prisma.usuario.findUnique({
+        const usuario = await this.prisma.usuario.findUnique({
             where: {
                 id: idUsurio
             }
         })
         return usuario
+    }
+
+    async buscarPorEmail(email: string) {
+
+        return await this.prisma.usuario.findUnique({
+            where: {
+                email
+            }
+        });
     }
 
     async criarUsuario(dadosUsuario: Partial<Usuario>) {
@@ -31,8 +40,8 @@ export class UserRepository {
         })
     }
 
-    async atualizarUsuario(idUsurio: number, dadosParaAtualizar: Omit<Usuario, 'id'>){
-        const usuarioAtualizado = await prisma.usuario.update({
+    async atualizarUsuario(idUsurio: number, dadosParaAtualizar: Omit<Usuario, 'id'>) {
+        const usuarioAtualizado = await this.prisma.usuario.update({
             data: {
                 ...dadosParaAtualizar
             },
@@ -43,8 +52,8 @@ export class UserRepository {
         return usuarioAtualizado
     }
 
-    async deletarUsuario(idUsurio: number){
-        const usuario = await prisma.usuario.delete({
+    async deletarUsuario(idUsurio: number) {
+        const usuario = await this.prisma.usuario.delete({
             where: {
                 id: idUsurio
             }

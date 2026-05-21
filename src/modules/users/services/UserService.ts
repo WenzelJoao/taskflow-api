@@ -5,8 +5,7 @@ import { userRepository, type UserRepository } from "../repositories/UserReposit
 
 
 export class UserService {
-    constructor(private readonly repository: UserRepository)
-    {       
+    constructor(private readonly repository: UserRepository) {
     }
 
     async listarTodosUsuario() {
@@ -20,6 +19,14 @@ export class UserService {
     }
 
     async criarUsuario(dadosUsuario: Usuario) {
+        const usuarioExiste = await this.repository.buscarPorEmail(
+            dadosUsuario.email
+        );
+
+        if (usuarioExiste) {
+            throw new Error("Usuário já cadastrado");
+        }
+
         const hash = await createHash(dadosUsuario.senha)
 
         const usuarioCriado = await this.repository.criarUsuario({
@@ -31,11 +38,20 @@ export class UserService {
     }
 
     async atualizarUsuario(idUsuario: number, dadosParaAtualizar: Omit<Usuario, 'id'>) {
-        const usuarioAtualizado = await this.repository.atualizarUsuario(idUsuario, dadosParaAtualizar)
-        return usuarioAtualizado
+
+        if (dadosParaAtualizar.senha) {
+
+            const hash = await createHash(dadosParaAtualizar.senha);
+
+            dadosParaAtualizar.senha = hash;
+        }
+
+        const usuarioAtualizado = await this.repository.atualizarUsuario(idUsuario, dadosParaAtualizar);
+
+        return usuarioAtualizado;
     }
 
-    async deletarUsuario(idUsuario:number) {
+    async deletarUsuario(idUsuario: number) {
         const usuario = await this.repository.deletarUsuario(idUsuario)
         return usuario
     }
