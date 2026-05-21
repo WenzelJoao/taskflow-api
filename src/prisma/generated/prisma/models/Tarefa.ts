@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model Tarefa
@@ -28,10 +28,14 @@ export type AggregateTarefa = {
 
 export type TarefaAvgAggregateOutputType = {
   id: number | null
+  usuarioId: number | null
+  projetoId: number | null
 }
 
 export type TarefaSumAggregateOutputType = {
   id: number | null
+  usuarioId: number | null
+  projetoId: number | null
 }
 
 export type TarefaMinAggregateOutputType = {
@@ -40,6 +44,11 @@ export type TarefaMinAggregateOutputType = {
   descricao: string | null
   data_vencimento: Date | null
   prioridade: string | null
+  status: string | null
+  usuarioId: number | null
+  projetoId: number | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type TarefaMaxAggregateOutputType = {
@@ -48,6 +57,11 @@ export type TarefaMaxAggregateOutputType = {
   descricao: string | null
   data_vencimento: Date | null
   prioridade: string | null
+  status: string | null
+  usuarioId: number | null
+  projetoId: number | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type TarefaCountAggregateOutputType = {
@@ -56,16 +70,25 @@ export type TarefaCountAggregateOutputType = {
   descricao: number
   data_vencimento: number
   prioridade: number
+  status: number
+  usuarioId: number
+  projetoId: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
 
 export type TarefaAvgAggregateInputType = {
   id?: true
+  usuarioId?: true
+  projetoId?: true
 }
 
 export type TarefaSumAggregateInputType = {
   id?: true
+  usuarioId?: true
+  projetoId?: true
 }
 
 export type TarefaMinAggregateInputType = {
@@ -74,6 +97,11 @@ export type TarefaMinAggregateInputType = {
   descricao?: true
   data_vencimento?: true
   prioridade?: true
+  status?: true
+  usuarioId?: true
+  projetoId?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type TarefaMaxAggregateInputType = {
@@ -82,6 +110,11 @@ export type TarefaMaxAggregateInputType = {
   descricao?: true
   data_vencimento?: true
   prioridade?: true
+  status?: true
+  usuarioId?: true
+  projetoId?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type TarefaCountAggregateInputType = {
@@ -90,6 +123,11 @@ export type TarefaCountAggregateInputType = {
   descricao?: true
   data_vencimento?: true
   prioridade?: true
+  status?: true
+  usuarioId?: true
+  projetoId?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -185,6 +223,11 @@ export type TarefaGroupByOutputType = {
   descricao: string
   data_vencimento: Date
   prioridade: string
+  status: string
+  usuarioId: number | null
+  projetoId: number | null
+  createdAt: Date
+  updatedAt: Date
   _count: TarefaCountAggregateOutputType | null
   _avg: TarefaAvgAggregateOutputType | null
   _sum: TarefaSumAggregateOutputType | null
@@ -216,6 +259,14 @@ export type TarefaWhereInput = {
   descricao?: Prisma.StringFilter<"Tarefa"> | string
   data_vencimento?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
   prioridade?: Prisma.StringFilter<"Tarefa"> | string
+  status?: Prisma.StringFilter<"Tarefa"> | string
+  usuarioId?: Prisma.IntNullableFilter<"Tarefa"> | number | null
+  projetoId?: Prisma.IntNullableFilter<"Tarefa"> | number | null
+  createdAt?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
+  usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
+  projeto?: Prisma.XOR<Prisma.ProjetoNullableScalarRelationFilter, Prisma.ProjetoWhereInput> | null
+  historicos?: Prisma.HistoricoTarefaListRelationFilter
 }
 
 export type TarefaOrderByWithRelationInput = {
@@ -224,6 +275,14 @@ export type TarefaOrderByWithRelationInput = {
   descricao?: Prisma.SortOrder
   data_vencimento?: Prisma.SortOrder
   prioridade?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrderInput | Prisma.SortOrder
+  projetoId?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  usuario?: Prisma.UsuarioOrderByWithRelationInput
+  projeto?: Prisma.ProjetoOrderByWithRelationInput
+  historicos?: Prisma.HistoricoTarefaOrderByRelationAggregateInput
 }
 
 export type TarefaWhereUniqueInput = Prisma.AtLeast<{
@@ -235,6 +294,14 @@ export type TarefaWhereUniqueInput = Prisma.AtLeast<{
   descricao?: Prisma.StringFilter<"Tarefa"> | string
   data_vencimento?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
   prioridade?: Prisma.StringFilter<"Tarefa"> | string
+  status?: Prisma.StringFilter<"Tarefa"> | string
+  usuarioId?: Prisma.IntNullableFilter<"Tarefa"> | number | null
+  projetoId?: Prisma.IntNullableFilter<"Tarefa"> | number | null
+  createdAt?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
+  usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
+  projeto?: Prisma.XOR<Prisma.ProjetoNullableScalarRelationFilter, Prisma.ProjetoWhereInput> | null
+  historicos?: Prisma.HistoricoTarefaListRelationFilter
 }, "id">
 
 export type TarefaOrderByWithAggregationInput = {
@@ -243,6 +310,11 @@ export type TarefaOrderByWithAggregationInput = {
   descricao?: Prisma.SortOrder
   data_vencimento?: Prisma.SortOrder
   prioridade?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrderInput | Prisma.SortOrder
+  projetoId?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.TarefaCountOrderByAggregateInput
   _avg?: Prisma.TarefaAvgOrderByAggregateInput
   _max?: Prisma.TarefaMaxOrderByAggregateInput
@@ -259,6 +331,11 @@ export type TarefaScalarWhereWithAggregatesInput = {
   descricao?: Prisma.StringWithAggregatesFilter<"Tarefa"> | string
   data_vencimento?: Prisma.DateTimeWithAggregatesFilter<"Tarefa"> | Date | string
   prioridade?: Prisma.StringWithAggregatesFilter<"Tarefa"> | string
+  status?: Prisma.StringWithAggregatesFilter<"Tarefa"> | string
+  usuarioId?: Prisma.IntNullableWithAggregatesFilter<"Tarefa"> | number | null
+  projetoId?: Prisma.IntNullableWithAggregatesFilter<"Tarefa"> | number | null
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tarefa"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Tarefa"> | Date | string
 }
 
 export type TarefaCreateInput = {
@@ -266,6 +343,12 @@ export type TarefaCreateInput = {
   descricao: string
   data_vencimento: Date | string
   prioridade: string
+  status?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  usuario?: Prisma.UsuarioCreateNestedOneWithoutTarefasInput
+  projeto?: Prisma.ProjetoCreateNestedOneWithoutTarefasInput
+  historicos?: Prisma.HistoricoTarefaCreateNestedManyWithoutTarefaInput
 }
 
 export type TarefaUncheckedCreateInput = {
@@ -274,6 +357,12 @@ export type TarefaUncheckedCreateInput = {
   descricao: string
   data_vencimento: Date | string
   prioridade: string
+  status?: string
+  usuarioId?: number | null
+  projetoId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  historicos?: Prisma.HistoricoTarefaUncheckedCreateNestedManyWithoutTarefaInput
 }
 
 export type TarefaUpdateInput = {
@@ -281,6 +370,12 @@ export type TarefaUpdateInput = {
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prioridade?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  usuario?: Prisma.UsuarioUpdateOneWithoutTarefasNestedInput
+  projeto?: Prisma.ProjetoUpdateOneWithoutTarefasNestedInput
+  historicos?: Prisma.HistoricoTarefaUpdateManyWithoutTarefaNestedInput
 }
 
 export type TarefaUncheckedUpdateInput = {
@@ -289,6 +384,12 @@ export type TarefaUncheckedUpdateInput = {
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prioridade?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  projetoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  historicos?: Prisma.HistoricoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
 }
 
 export type TarefaCreateManyInput = {
@@ -297,6 +398,11 @@ export type TarefaCreateManyInput = {
   descricao: string
   data_vencimento: Date | string
   prioridade: string
+  status?: string
+  usuarioId?: number | null
+  projetoId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type TarefaUpdateManyMutationInput = {
@@ -304,6 +410,9 @@ export type TarefaUpdateManyMutationInput = {
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prioridade?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TarefaUncheckedUpdateManyInput = {
@@ -312,6 +421,21 @@ export type TarefaUncheckedUpdateManyInput = {
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prioridade?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  projetoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TarefaListRelationFilter = {
+  every?: Prisma.TarefaWhereInput
+  some?: Prisma.TarefaWhereInput
+  none?: Prisma.TarefaWhereInput
+}
+
+export type TarefaOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type TarefaCountOrderByAggregateInput = {
@@ -320,10 +444,17 @@ export type TarefaCountOrderByAggregateInput = {
   descricao?: Prisma.SortOrder
   data_vencimento?: Prisma.SortOrder
   prioridade?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
+  projetoId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type TarefaAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
+  projetoId?: Prisma.SortOrder
 }
 
 export type TarefaMaxOrderByAggregateInput = {
@@ -332,6 +463,11 @@ export type TarefaMaxOrderByAggregateInput = {
   descricao?: Prisma.SortOrder
   data_vencimento?: Prisma.SortOrder
   prioridade?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
+  projetoId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type TarefaMinOrderByAggregateInput = {
@@ -340,16 +476,445 @@ export type TarefaMinOrderByAggregateInput = {
   descricao?: Prisma.SortOrder
   data_vencimento?: Prisma.SortOrder
   prioridade?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
+  projetoId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type TarefaSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
+  projetoId?: Prisma.SortOrder
+}
+
+export type TarefaScalarRelationFilter = {
+  is?: Prisma.TarefaWhereInput
+  isNot?: Prisma.TarefaWhereInput
+}
+
+export type TarefaCreateNestedManyWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.TarefaCreateWithoutUsuarioInput, Prisma.TarefaUncheckedCreateWithoutUsuarioInput> | Prisma.TarefaCreateWithoutUsuarioInput[] | Prisma.TarefaUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutUsuarioInput | Prisma.TarefaCreateOrConnectWithoutUsuarioInput[]
+  createMany?: Prisma.TarefaCreateManyUsuarioInputEnvelope
+  connect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+}
+
+export type TarefaUncheckedCreateNestedManyWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.TarefaCreateWithoutUsuarioInput, Prisma.TarefaUncheckedCreateWithoutUsuarioInput> | Prisma.TarefaCreateWithoutUsuarioInput[] | Prisma.TarefaUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutUsuarioInput | Prisma.TarefaCreateOrConnectWithoutUsuarioInput[]
+  createMany?: Prisma.TarefaCreateManyUsuarioInputEnvelope
+  connect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+}
+
+export type TarefaUpdateManyWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.TarefaCreateWithoutUsuarioInput, Prisma.TarefaUncheckedCreateWithoutUsuarioInput> | Prisma.TarefaCreateWithoutUsuarioInput[] | Prisma.TarefaUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutUsuarioInput | Prisma.TarefaCreateOrConnectWithoutUsuarioInput[]
+  upsert?: Prisma.TarefaUpsertWithWhereUniqueWithoutUsuarioInput | Prisma.TarefaUpsertWithWhereUniqueWithoutUsuarioInput[]
+  createMany?: Prisma.TarefaCreateManyUsuarioInputEnvelope
+  set?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  disconnect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  delete?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  connect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  update?: Prisma.TarefaUpdateWithWhereUniqueWithoutUsuarioInput | Prisma.TarefaUpdateWithWhereUniqueWithoutUsuarioInput[]
+  updateMany?: Prisma.TarefaUpdateManyWithWhereWithoutUsuarioInput | Prisma.TarefaUpdateManyWithWhereWithoutUsuarioInput[]
+  deleteMany?: Prisma.TarefaScalarWhereInput | Prisma.TarefaScalarWhereInput[]
+}
+
+export type TarefaUncheckedUpdateManyWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.TarefaCreateWithoutUsuarioInput, Prisma.TarefaUncheckedCreateWithoutUsuarioInput> | Prisma.TarefaCreateWithoutUsuarioInput[] | Prisma.TarefaUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutUsuarioInput | Prisma.TarefaCreateOrConnectWithoutUsuarioInput[]
+  upsert?: Prisma.TarefaUpsertWithWhereUniqueWithoutUsuarioInput | Prisma.TarefaUpsertWithWhereUniqueWithoutUsuarioInput[]
+  createMany?: Prisma.TarefaCreateManyUsuarioInputEnvelope
+  set?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  disconnect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  delete?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  connect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  update?: Prisma.TarefaUpdateWithWhereUniqueWithoutUsuarioInput | Prisma.TarefaUpdateWithWhereUniqueWithoutUsuarioInput[]
+  updateMany?: Prisma.TarefaUpdateManyWithWhereWithoutUsuarioInput | Prisma.TarefaUpdateManyWithWhereWithoutUsuarioInput[]
+  deleteMany?: Prisma.TarefaScalarWhereInput | Prisma.TarefaScalarWhereInput[]
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type TarefaCreateNestedManyWithoutProjetoInput = {
+  create?: Prisma.XOR<Prisma.TarefaCreateWithoutProjetoInput, Prisma.TarefaUncheckedCreateWithoutProjetoInput> | Prisma.TarefaCreateWithoutProjetoInput[] | Prisma.TarefaUncheckedCreateWithoutProjetoInput[]
+  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutProjetoInput | Prisma.TarefaCreateOrConnectWithoutProjetoInput[]
+  createMany?: Prisma.TarefaCreateManyProjetoInputEnvelope
+  connect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+}
+
+export type TarefaUncheckedCreateNestedManyWithoutProjetoInput = {
+  create?: Prisma.XOR<Prisma.TarefaCreateWithoutProjetoInput, Prisma.TarefaUncheckedCreateWithoutProjetoInput> | Prisma.TarefaCreateWithoutProjetoInput[] | Prisma.TarefaUncheckedCreateWithoutProjetoInput[]
+  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutProjetoInput | Prisma.TarefaCreateOrConnectWithoutProjetoInput[]
+  createMany?: Prisma.TarefaCreateManyProjetoInputEnvelope
+  connect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+}
+
+export type TarefaUpdateManyWithoutProjetoNestedInput = {
+  create?: Prisma.XOR<Prisma.TarefaCreateWithoutProjetoInput, Prisma.TarefaUncheckedCreateWithoutProjetoInput> | Prisma.TarefaCreateWithoutProjetoInput[] | Prisma.TarefaUncheckedCreateWithoutProjetoInput[]
+  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutProjetoInput | Prisma.TarefaCreateOrConnectWithoutProjetoInput[]
+  upsert?: Prisma.TarefaUpsertWithWhereUniqueWithoutProjetoInput | Prisma.TarefaUpsertWithWhereUniqueWithoutProjetoInput[]
+  createMany?: Prisma.TarefaCreateManyProjetoInputEnvelope
+  set?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  disconnect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  delete?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  connect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  update?: Prisma.TarefaUpdateWithWhereUniqueWithoutProjetoInput | Prisma.TarefaUpdateWithWhereUniqueWithoutProjetoInput[]
+  updateMany?: Prisma.TarefaUpdateManyWithWhereWithoutProjetoInput | Prisma.TarefaUpdateManyWithWhereWithoutProjetoInput[]
+  deleteMany?: Prisma.TarefaScalarWhereInput | Prisma.TarefaScalarWhereInput[]
+}
+
+export type TarefaUncheckedUpdateManyWithoutProjetoNestedInput = {
+  create?: Prisma.XOR<Prisma.TarefaCreateWithoutProjetoInput, Prisma.TarefaUncheckedCreateWithoutProjetoInput> | Prisma.TarefaCreateWithoutProjetoInput[] | Prisma.TarefaUncheckedCreateWithoutProjetoInput[]
+  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutProjetoInput | Prisma.TarefaCreateOrConnectWithoutProjetoInput[]
+  upsert?: Prisma.TarefaUpsertWithWhereUniqueWithoutProjetoInput | Prisma.TarefaUpsertWithWhereUniqueWithoutProjetoInput[]
+  createMany?: Prisma.TarefaCreateManyProjetoInputEnvelope
+  set?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  disconnect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  delete?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  connect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
+  update?: Prisma.TarefaUpdateWithWhereUniqueWithoutProjetoInput | Prisma.TarefaUpdateWithWhereUniqueWithoutProjetoInput[]
+  updateMany?: Prisma.TarefaUpdateManyWithWhereWithoutProjetoInput | Prisma.TarefaUpdateManyWithWhereWithoutProjetoInput[]
+  deleteMany?: Prisma.TarefaScalarWhereInput | Prisma.TarefaScalarWhereInput[]
+}
+
+export type TarefaCreateNestedOneWithoutHistoricosInput = {
+  create?: Prisma.XOR<Prisma.TarefaCreateWithoutHistoricosInput, Prisma.TarefaUncheckedCreateWithoutHistoricosInput>
+  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutHistoricosInput
+  connect?: Prisma.TarefaWhereUniqueInput
+}
+
+export type TarefaUpdateOneRequiredWithoutHistoricosNestedInput = {
+  create?: Prisma.XOR<Prisma.TarefaCreateWithoutHistoricosInput, Prisma.TarefaUncheckedCreateWithoutHistoricosInput>
+  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutHistoricosInput
+  upsert?: Prisma.TarefaUpsertWithoutHistoricosInput
+  connect?: Prisma.TarefaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TarefaUpdateToOneWithWhereWithoutHistoricosInput, Prisma.TarefaUpdateWithoutHistoricosInput>, Prisma.TarefaUncheckedUpdateWithoutHistoricosInput>
+}
+
+export type TarefaCreateWithoutUsuarioInput = {
+  titulo: string
+  descricao: string
+  data_vencimento: Date | string
+  prioridade: string
+  status?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  projeto?: Prisma.ProjetoCreateNestedOneWithoutTarefasInput
+  historicos?: Prisma.HistoricoTarefaCreateNestedManyWithoutTarefaInput
+}
+
+export type TarefaUncheckedCreateWithoutUsuarioInput = {
+  id?: number
+  titulo: string
+  descricao: string
+  data_vencimento: Date | string
+  prioridade: string
+  status?: string
+  projetoId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  historicos?: Prisma.HistoricoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+}
+
+export type TarefaCreateOrConnectWithoutUsuarioInput = {
+  where: Prisma.TarefaWhereUniqueInput
+  create: Prisma.XOR<Prisma.TarefaCreateWithoutUsuarioInput, Prisma.TarefaUncheckedCreateWithoutUsuarioInput>
+}
+
+export type TarefaCreateManyUsuarioInputEnvelope = {
+  data: Prisma.TarefaCreateManyUsuarioInput | Prisma.TarefaCreateManyUsuarioInput[]
+  skipDuplicates?: boolean
+}
+
+export type TarefaUpsertWithWhereUniqueWithoutUsuarioInput = {
+  where: Prisma.TarefaWhereUniqueInput
+  update: Prisma.XOR<Prisma.TarefaUpdateWithoutUsuarioInput, Prisma.TarefaUncheckedUpdateWithoutUsuarioInput>
+  create: Prisma.XOR<Prisma.TarefaCreateWithoutUsuarioInput, Prisma.TarefaUncheckedCreateWithoutUsuarioInput>
+}
+
+export type TarefaUpdateWithWhereUniqueWithoutUsuarioInput = {
+  where: Prisma.TarefaWhereUniqueInput
+  data: Prisma.XOR<Prisma.TarefaUpdateWithoutUsuarioInput, Prisma.TarefaUncheckedUpdateWithoutUsuarioInput>
+}
+
+export type TarefaUpdateManyWithWhereWithoutUsuarioInput = {
+  where: Prisma.TarefaScalarWhereInput
+  data: Prisma.XOR<Prisma.TarefaUpdateManyMutationInput, Prisma.TarefaUncheckedUpdateManyWithoutUsuarioInput>
+}
+
+export type TarefaScalarWhereInput = {
+  AND?: Prisma.TarefaScalarWhereInput | Prisma.TarefaScalarWhereInput[]
+  OR?: Prisma.TarefaScalarWhereInput[]
+  NOT?: Prisma.TarefaScalarWhereInput | Prisma.TarefaScalarWhereInput[]
+  id?: Prisma.IntFilter<"Tarefa"> | number
+  titulo?: Prisma.StringFilter<"Tarefa"> | string
+  descricao?: Prisma.StringFilter<"Tarefa"> | string
+  data_vencimento?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
+  prioridade?: Prisma.StringFilter<"Tarefa"> | string
+  status?: Prisma.StringFilter<"Tarefa"> | string
+  usuarioId?: Prisma.IntNullableFilter<"Tarefa"> | number | null
+  projetoId?: Prisma.IntNullableFilter<"Tarefa"> | number | null
+  createdAt?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
+}
+
+export type TarefaCreateWithoutProjetoInput = {
+  titulo: string
+  descricao: string
+  data_vencimento: Date | string
+  prioridade: string
+  status?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  usuario?: Prisma.UsuarioCreateNestedOneWithoutTarefasInput
+  historicos?: Prisma.HistoricoTarefaCreateNestedManyWithoutTarefaInput
+}
+
+export type TarefaUncheckedCreateWithoutProjetoInput = {
+  id?: number
+  titulo: string
+  descricao: string
+  data_vencimento: Date | string
+  prioridade: string
+  status?: string
+  usuarioId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  historicos?: Prisma.HistoricoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+}
+
+export type TarefaCreateOrConnectWithoutProjetoInput = {
+  where: Prisma.TarefaWhereUniqueInput
+  create: Prisma.XOR<Prisma.TarefaCreateWithoutProjetoInput, Prisma.TarefaUncheckedCreateWithoutProjetoInput>
+}
+
+export type TarefaCreateManyProjetoInputEnvelope = {
+  data: Prisma.TarefaCreateManyProjetoInput | Prisma.TarefaCreateManyProjetoInput[]
+  skipDuplicates?: boolean
+}
+
+export type TarefaUpsertWithWhereUniqueWithoutProjetoInput = {
+  where: Prisma.TarefaWhereUniqueInput
+  update: Prisma.XOR<Prisma.TarefaUpdateWithoutProjetoInput, Prisma.TarefaUncheckedUpdateWithoutProjetoInput>
+  create: Prisma.XOR<Prisma.TarefaCreateWithoutProjetoInput, Prisma.TarefaUncheckedCreateWithoutProjetoInput>
+}
+
+export type TarefaUpdateWithWhereUniqueWithoutProjetoInput = {
+  where: Prisma.TarefaWhereUniqueInput
+  data: Prisma.XOR<Prisma.TarefaUpdateWithoutProjetoInput, Prisma.TarefaUncheckedUpdateWithoutProjetoInput>
+}
+
+export type TarefaUpdateManyWithWhereWithoutProjetoInput = {
+  where: Prisma.TarefaScalarWhereInput
+  data: Prisma.XOR<Prisma.TarefaUpdateManyMutationInput, Prisma.TarefaUncheckedUpdateManyWithoutProjetoInput>
+}
+
+export type TarefaCreateWithoutHistoricosInput = {
+  titulo: string
+  descricao: string
+  data_vencimento: Date | string
+  prioridade: string
+  status?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  usuario?: Prisma.UsuarioCreateNestedOneWithoutTarefasInput
+  projeto?: Prisma.ProjetoCreateNestedOneWithoutTarefasInput
+}
+
+export type TarefaUncheckedCreateWithoutHistoricosInput = {
+  id?: number
+  titulo: string
+  descricao: string
+  data_vencimento: Date | string
+  prioridade: string
+  status?: string
+  usuarioId?: number | null
+  projetoId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type TarefaCreateOrConnectWithoutHistoricosInput = {
+  where: Prisma.TarefaWhereUniqueInput
+  create: Prisma.XOR<Prisma.TarefaCreateWithoutHistoricosInput, Prisma.TarefaUncheckedCreateWithoutHistoricosInput>
+}
+
+export type TarefaUpsertWithoutHistoricosInput = {
+  update: Prisma.XOR<Prisma.TarefaUpdateWithoutHistoricosInput, Prisma.TarefaUncheckedUpdateWithoutHistoricosInput>
+  create: Prisma.XOR<Prisma.TarefaCreateWithoutHistoricosInput, Prisma.TarefaUncheckedCreateWithoutHistoricosInput>
+  where?: Prisma.TarefaWhereInput
+}
+
+export type TarefaUpdateToOneWithWhereWithoutHistoricosInput = {
+  where?: Prisma.TarefaWhereInput
+  data: Prisma.XOR<Prisma.TarefaUpdateWithoutHistoricosInput, Prisma.TarefaUncheckedUpdateWithoutHistoricosInput>
+}
+
+export type TarefaUpdateWithoutHistoricosInput = {
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridade?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  usuario?: Prisma.UsuarioUpdateOneWithoutTarefasNestedInput
+  projeto?: Prisma.ProjetoUpdateOneWithoutTarefasNestedInput
+}
+
+export type TarefaUncheckedUpdateWithoutHistoricosInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridade?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  projetoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TarefaCreateManyUsuarioInput = {
+  id?: number
+  titulo: string
+  descricao: string
+  data_vencimento: Date | string
+  prioridade: string
+  status?: string
+  projetoId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type TarefaUpdateWithoutUsuarioInput = {
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridade?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  projeto?: Prisma.ProjetoUpdateOneWithoutTarefasNestedInput
+  historicos?: Prisma.HistoricoTarefaUpdateManyWithoutTarefaNestedInput
+}
+
+export type TarefaUncheckedUpdateWithoutUsuarioInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridade?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  projetoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  historicos?: Prisma.HistoricoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+}
+
+export type TarefaUncheckedUpdateManyWithoutUsuarioInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridade?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  projetoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TarefaCreateManyProjetoInput = {
+  id?: number
+  titulo: string
+  descricao: string
+  data_vencimento: Date | string
+  prioridade: string
+  status?: string
+  usuarioId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type TarefaUpdateWithoutProjetoInput = {
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridade?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  usuario?: Prisma.UsuarioUpdateOneWithoutTarefasNestedInput
+  historicos?: Prisma.HistoricoTarefaUpdateManyWithoutTarefaNestedInput
+}
+
+export type TarefaUncheckedUpdateWithoutProjetoInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridade?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  historicos?: Prisma.HistoricoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+}
+
+export type TarefaUncheckedUpdateManyWithoutProjetoInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridade?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type TarefaCountOutputType
+ */
+
+export type TarefaCountOutputType = {
+  historicos: number
+}
+
+export type TarefaCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  historicos?: boolean | TarefaCountOutputTypeCountHistoricosArgs
+}
+
+/**
+ * TarefaCountOutputType without action
+ */
+export type TarefaCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TarefaCountOutputType
+   */
+  select?: Prisma.TarefaCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * TarefaCountOutputType without action
+ */
+export type TarefaCountOutputTypeCountHistoricosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HistoricoTarefaWhereInput
+}
 
 
 export type TarefaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -358,6 +923,15 @@ export type TarefaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   descricao?: boolean
   data_vencimento?: boolean
   prioridade?: boolean
+  status?: boolean
+  usuarioId?: boolean
+  projetoId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  usuario?: boolean | Prisma.Tarefa$usuarioArgs<ExtArgs>
+  projeto?: boolean | Prisma.Tarefa$projetoArgs<ExtArgs>
+  historicos?: boolean | Prisma.Tarefa$historicosArgs<ExtArgs>
+  _count?: boolean | Prisma.TarefaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tarefa"]>
 
 export type TarefaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -366,6 +940,13 @@ export type TarefaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   descricao?: boolean
   data_vencimento?: boolean
   prioridade?: boolean
+  status?: boolean
+  usuarioId?: boolean
+  projetoId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  usuario?: boolean | Prisma.Tarefa$usuarioArgs<ExtArgs>
+  projeto?: boolean | Prisma.Tarefa$projetoArgs<ExtArgs>
 }, ExtArgs["result"]["tarefa"]>
 
 export type TarefaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -374,6 +955,13 @@ export type TarefaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   descricao?: boolean
   data_vencimento?: boolean
   prioridade?: boolean
+  status?: boolean
+  usuarioId?: boolean
+  projetoId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  usuario?: boolean | Prisma.Tarefa$usuarioArgs<ExtArgs>
+  projeto?: boolean | Prisma.Tarefa$projetoArgs<ExtArgs>
 }, ExtArgs["result"]["tarefa"]>
 
 export type TarefaSelectScalar = {
@@ -382,19 +970,47 @@ export type TarefaSelectScalar = {
   descricao?: boolean
   data_vencimento?: boolean
   prioridade?: boolean
+  status?: boolean
+  usuarioId?: boolean
+  projetoId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type TarefaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "titulo" | "descricao" | "data_vencimento" | "prioridade", ExtArgs["result"]["tarefa"]>
+export type TarefaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "titulo" | "descricao" | "data_vencimento" | "prioridade" | "status" | "usuarioId" | "projetoId" | "createdAt" | "updatedAt", ExtArgs["result"]["tarefa"]>
+export type TarefaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  usuario?: boolean | Prisma.Tarefa$usuarioArgs<ExtArgs>
+  projeto?: boolean | Prisma.Tarefa$projetoArgs<ExtArgs>
+  historicos?: boolean | Prisma.Tarefa$historicosArgs<ExtArgs>
+  _count?: boolean | Prisma.TarefaCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type TarefaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  usuario?: boolean | Prisma.Tarefa$usuarioArgs<ExtArgs>
+  projeto?: boolean | Prisma.Tarefa$projetoArgs<ExtArgs>
+}
+export type TarefaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  usuario?: boolean | Prisma.Tarefa$usuarioArgs<ExtArgs>
+  projeto?: boolean | Prisma.Tarefa$projetoArgs<ExtArgs>
+}
 
 export type $TarefaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Tarefa"
-  objects: {}
+  objects: {
+    usuario: Prisma.$UsuarioPayload<ExtArgs> | null
+    projeto: Prisma.$ProjetoPayload<ExtArgs> | null
+    historicos: Prisma.$HistoricoTarefaPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     titulo: string
     descricao: string
     data_vencimento: Date
     prioridade: string
+    status: string
+    usuarioId: number | null
+    projetoId: number | null
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["tarefa"]>
   composites: {}
 }
@@ -789,6 +1405,9 @@ readonly fields: TarefaFieldRefs;
  */
 export interface Prisma__TarefaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  usuario<T extends Prisma.Tarefa$usuarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tarefa$usuarioArgs<ExtArgs>>): Prisma.Prisma__UsuarioClient<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  projeto<T extends Prisma.Tarefa$projetoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tarefa$projetoArgs<ExtArgs>>): Prisma.Prisma__ProjetoClient<runtime.Types.Result.GetResult<Prisma.$ProjetoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  historicos<T extends Prisma.Tarefa$historicosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tarefa$historicosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HistoricoTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -823,6 +1442,11 @@ export interface TarefaFieldRefs {
   readonly descricao: Prisma.FieldRef<"Tarefa", 'String'>
   readonly data_vencimento: Prisma.FieldRef<"Tarefa", 'DateTime'>
   readonly prioridade: Prisma.FieldRef<"Tarefa", 'String'>
+  readonly status: Prisma.FieldRef<"Tarefa", 'String'>
+  readonly usuarioId: Prisma.FieldRef<"Tarefa", 'Int'>
+  readonly projetoId: Prisma.FieldRef<"Tarefa", 'Int'>
+  readonly createdAt: Prisma.FieldRef<"Tarefa", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Tarefa", 'DateTime'>
 }
     
 
@@ -839,6 +1463,10 @@ export type TarefaFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Tarefa
    */
   omit?: Prisma.TarefaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TarefaInclude<ExtArgs> | null
   /**
    * Filter, which Tarefa to fetch.
    */
@@ -858,6 +1486,10 @@ export type TarefaFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.TarefaOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TarefaInclude<ExtArgs> | null
+  /**
    * Filter, which Tarefa to fetch.
    */
   where: Prisma.TarefaWhereUniqueInput
@@ -875,6 +1507,10 @@ export type TarefaFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Tarefa
    */
   omit?: Prisma.TarefaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TarefaInclude<ExtArgs> | null
   /**
    * Filter, which Tarefa to fetch.
    */
@@ -924,6 +1560,10 @@ export type TarefaFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.TarefaOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TarefaInclude<ExtArgs> | null
+  /**
    * Filter, which Tarefa to fetch.
    */
   where?: Prisma.TarefaWhereInput
@@ -971,6 +1611,10 @@ export type TarefaFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Tarefa
    */
   omit?: Prisma.TarefaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TarefaInclude<ExtArgs> | null
   /**
    * Filter, which Tarefas to fetch.
    */
@@ -1020,6 +1664,10 @@ export type TarefaCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.TarefaOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TarefaInclude<ExtArgs> | null
+  /**
    * The data needed to create a Tarefa.
    */
   data: Prisma.XOR<Prisma.TarefaCreateInput, Prisma.TarefaUncheckedCreateInput>
@@ -1053,6 +1701,10 @@ export type TarefaCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    */
   data: Prisma.TarefaCreateManyInput | Prisma.TarefaCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TarefaIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1067,6 +1719,10 @@ export type TarefaUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Tarefa
    */
   omit?: Prisma.TarefaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TarefaInclude<ExtArgs> | null
   /**
    * The data needed to update a Tarefa.
    */
@@ -1119,6 +1775,10 @@ export type TarefaUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many Tarefas to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TarefaIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1133,6 +1793,10 @@ export type TarefaUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Tarefa
    */
   omit?: Prisma.TarefaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TarefaInclude<ExtArgs> | null
   /**
    * The filter to search for the Tarefa to update in case it exists.
    */
@@ -1160,6 +1824,10 @@ export type TarefaDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.TarefaOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TarefaInclude<ExtArgs> | null
+  /**
    * Filter which Tarefa to delete.
    */
   where: Prisma.TarefaWhereUniqueInput
@@ -1180,6 +1848,68 @@ export type TarefaDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
+ * Tarefa.usuario
+ */
+export type Tarefa$usuarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Usuario
+   */
+  select?: Prisma.UsuarioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Usuario
+   */
+  omit?: Prisma.UsuarioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsuarioInclude<ExtArgs> | null
+  where?: Prisma.UsuarioWhereInput
+}
+
+/**
+ * Tarefa.projeto
+ */
+export type Tarefa$projetoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Projeto
+   */
+  select?: Prisma.ProjetoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Projeto
+   */
+  omit?: Prisma.ProjetoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjetoInclude<ExtArgs> | null
+  where?: Prisma.ProjetoWhereInput
+}
+
+/**
+ * Tarefa.historicos
+ */
+export type Tarefa$historicosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the HistoricoTarefa
+   */
+  select?: Prisma.HistoricoTarefaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the HistoricoTarefa
+   */
+  omit?: Prisma.HistoricoTarefaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HistoricoTarefaInclude<ExtArgs> | null
+  where?: Prisma.HistoricoTarefaWhereInput
+  orderBy?: Prisma.HistoricoTarefaOrderByWithRelationInput | Prisma.HistoricoTarefaOrderByWithRelationInput[]
+  cursor?: Prisma.HistoricoTarefaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HistoricoTarefaScalarFieldEnum | Prisma.HistoricoTarefaScalarFieldEnum[]
+}
+
+/**
  * Tarefa without action
  */
 export type TarefaDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1191,4 +1921,8 @@ export type TarefaDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Tarefa
    */
   omit?: Prisma.TarefaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TarefaInclude<ExtArgs> | null
 }

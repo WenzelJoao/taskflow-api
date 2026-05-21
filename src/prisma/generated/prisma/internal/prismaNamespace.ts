@@ -16,10 +16,10 @@
  */
 
 import * as runtime from "@prisma/client/runtime/client"
-import type * as Prisma from "../models.js"
-import { type PrismaClient } from "./class.js"
+import type * as Prisma from "../models"
+import { type PrismaClient } from "./class"
 
-export type * from '../models.js'
+export type * from '../models'
 
 export type DMMF = typeof runtime.DMMF
 
@@ -387,6 +387,7 @@ export const ModelName = {
   Usuario: 'Usuario',
   Tarefa: 'Tarefa',
   Projeto: 'Projeto',
+  HistoricoTarefa: 'HistoricoTarefa',
   Token: 'Token'
 } as const
 
@@ -403,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "usuario" | "tarefa" | "projeto" | "token"
+    modelProps: "usuario" | "tarefa" | "projeto" | "historicoTarefa" | "token"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -629,6 +630,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    HistoricoTarefa: {
+      payload: Prisma.$HistoricoTarefaPayload<ExtArgs>
+      fields: Prisma.HistoricoTarefaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.HistoricoTarefaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoTarefaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.HistoricoTarefaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoTarefaPayload>
+        }
+        findFirst: {
+          args: Prisma.HistoricoTarefaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoTarefaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.HistoricoTarefaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoTarefaPayload>
+        }
+        findMany: {
+          args: Prisma.HistoricoTarefaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoTarefaPayload>[]
+        }
+        create: {
+          args: Prisma.HistoricoTarefaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoTarefaPayload>
+        }
+        createMany: {
+          args: Prisma.HistoricoTarefaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.HistoricoTarefaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoTarefaPayload>[]
+        }
+        delete: {
+          args: Prisma.HistoricoTarefaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoTarefaPayload>
+        }
+        update: {
+          args: Prisma.HistoricoTarefaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoTarefaPayload>
+        }
+        deleteMany: {
+          args: Prisma.HistoricoTarefaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.HistoricoTarefaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.HistoricoTarefaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoTarefaPayload>[]
+        }
+        upsert: {
+          args: Prisma.HistoricoTarefaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoTarefaPayload>
+        }
+        aggregate: {
+          args: Prisma.HistoricoTarefaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHistoricoTarefa>
+        }
+        groupBy: {
+          args: Prisma.HistoricoTarefaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HistoricoTarefaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.HistoricoTarefaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HistoricoTarefaCountAggregateOutputType> | number
+        }
+      }
+    }
     Token: {
       payload: Prisma.$TokenPayload<ExtArgs>
       fields: Prisma.TokenFieldRefs
@@ -757,7 +832,12 @@ export const TarefaScalarFieldEnum = {
   titulo: 'titulo',
   descricao: 'descricao',
   data_vencimento: 'data_vencimento',
-  prioridade: 'prioridade'
+  prioridade: 'prioridade',
+  status: 'status',
+  usuarioId: 'usuarioId',
+  projetoId: 'projetoId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type TarefaScalarFieldEnum = (typeof TarefaScalarFieldEnum)[keyof typeof TarefaScalarFieldEnum]
@@ -766,13 +846,26 @@ export type TarefaScalarFieldEnum = (typeof TarefaScalarFieldEnum)[keyof typeof 
 export const ProjetoScalarFieldEnum = {
   id: 'id',
   titulo: 'titulo',
-  area_conhecimento: 'area_conhecimento',
-  data_criacao: 'data_criacao',
-  data_vencimento: 'data_vencimento',
-  descricao: 'descricao'
+  descricao: 'descricao',
+  areaConhecimento: 'areaConhecimento',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ProjetoScalarFieldEnum = (typeof ProjetoScalarFieldEnum)[keyof typeof ProjetoScalarFieldEnum]
+
+
+export const HistoricoTarefaScalarFieldEnum = {
+  id: 'id',
+  tarefaId: 'tarefaId',
+  usuarioId: 'usuarioId',
+  acao: 'acao',
+  descricao: 'descricao',
+  projetoId: 'projetoId',
+  createdAt: 'createdAt'
+} as const
+
+export type HistoricoTarefaScalarFieldEnum = (typeof HistoricoTarefaScalarFieldEnum)[keyof typeof HistoricoTarefaScalarFieldEnum]
 
 
 export const TokenScalarFieldEnum = {
@@ -1006,6 +1099,7 @@ export type GlobalOmitConfig = {
   usuario?: Prisma.UsuarioOmit
   tarefa?: Prisma.TarefaOmit
   projeto?: Prisma.ProjetoOmit
+  historicoTarefa?: Prisma.HistoricoTarefaOmit
   token?: Prisma.TokenOmit
 }
 

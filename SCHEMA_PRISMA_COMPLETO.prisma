@@ -1,3 +1,6 @@
+-- SCHEMA PRISMA ATUALIZADO
+-- Este é o schema.prisma que foi modificado
+
 generator client {
   provider = "prisma-client"
   output   = "../prisma/generated/prisma"
