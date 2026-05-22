@@ -1,19 +1,41 @@
-import { tarefaRepository } from "../repositories/tarefaRepository";
 
-export const criarTarefa = async (payload: any) => {
+import { Tarefa } from "../prisma/generated/prisma/client";
+import { TarefaRepository, tarefaRepository } from "../repositories/tarefaRepository";
 
-  if (!payload.titulo) throw new Error("titulo is required");
-  if (!payload.descricao) throw new Error("descricao is required");
-  if (!payload.data_vencimento) throw new Error("data_vencimento is required");
-  if (!payload.prioridade) throw new Error("prioridade is required");
+export class TarefaService{
+  constructor(private readonly repository: TarefaRepository){
 
-  return tarefaRepository.criarTarefa(payload);
+  }
+
+  async criarTarefa(dadosTarefa: Tarefa) {
+    const tarefaCriada = await this.repository.criarTarefa({
+      titulo: dadosTarefa.titulo,
+      descricao: dadosTarefa.descricao,
+      data_vencimento: dadosTarefa.data_vencimento,
+      prioridade: dadosTarefa.prioridade,
+      usuarioId: dadosTarefa.usuarioId,
+      projetoId: dadosTarefa.projetoId
+    })
+    return tarefaCriada
+    }
+  
+    async Tarefas(){
+
+     const listar = await this.repository.listarTodasTarefas();
+    return listar
+}
+  async tarefaId(id: number){
+    const listarId = await this.repository.buscarTarefaPorId(id)
+    return listarId
+  }
+  async editTarefa(id: number, data:any){
+    const editar = await this.repository.atualizarTarefa(id, data)
+    return editar
+  }
+  async removeTarefa(id: number){
+    const remover = await this.repository.deletarTarefa(id)
+  }
 };
 
-export const listTarefas = async () => tarefaRepository.listarTodasTarefas();
+export const tarefaService = new TarefaService(tarefaRepository)
 
-export const getTarefa = async (id: number) => tarefaRepository.buscarTarefaPorId(id);
-
-export const editTarefa = async (id: number, data: any) => tarefaRepository.atualizarTarefa(id, data);
-
-export const removeTarefa = async (id: number) => tarefaRepository.deletarTarefa(id);

@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use("/api", tarefaRoutes);
+app.use(tarefaRoutes)
 
 app.get("/", (_req: any, res: any) => res.json({ status: "ok" }));
 

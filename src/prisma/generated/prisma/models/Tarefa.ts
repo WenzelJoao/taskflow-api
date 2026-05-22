@@ -205,8 +205,8 @@ export type TarefaGroupByOutputType = {
   descricao: string
   data_vencimento: Date
   prioridade: string
-  usuarioId: number | null
-  projetoId: number | null
+  usuarioId: number
+  projetoId: number
   _count: TarefaCountAggregateOutputType | null
   _avg: TarefaAvgAggregateOutputType | null
   _sum: TarefaSumAggregateOutputType | null
@@ -238,8 +238,8 @@ export type TarefaWhereInput = {
   descricao?: Prisma.StringFilter<"Tarefa"> | string
   data_vencimento?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
   prioridade?: Prisma.StringFilter<"Tarefa"> | string
-  usuarioId?: Prisma.IntNullableFilter<"Tarefa"> | number | null
-  projetoId?: Prisma.IntNullableFilter<"Tarefa"> | number | null
+  usuarioId?: Prisma.IntFilter<"Tarefa"> | number
+  projetoId?: Prisma.IntFilter<"Tarefa"> | number
   usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
   projeto?: Prisma.XOR<Prisma.ProjetoNullableScalarRelationFilter, Prisma.ProjetoWhereInput> | null
 }
@@ -250,8 +250,8 @@ export type TarefaOrderByWithRelationInput = {
   descricao?: Prisma.SortOrder
   data_vencimento?: Prisma.SortOrder
   prioridade?: Prisma.SortOrder
-  usuarioId?: Prisma.SortOrderInput | Prisma.SortOrder
-  projetoId?: Prisma.SortOrderInput | Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
+  projetoId?: Prisma.SortOrder
   usuario?: Prisma.UsuarioOrderByWithRelationInput
   projeto?: Prisma.ProjetoOrderByWithRelationInput
 }
@@ -265,8 +265,8 @@ export type TarefaWhereUniqueInput = Prisma.AtLeast<{
   descricao?: Prisma.StringFilter<"Tarefa"> | string
   data_vencimento?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
   prioridade?: Prisma.StringFilter<"Tarefa"> | string
-  usuarioId?: Prisma.IntNullableFilter<"Tarefa"> | number | null
-  projetoId?: Prisma.IntNullableFilter<"Tarefa"> | number | null
+  usuarioId?: Prisma.IntFilter<"Tarefa"> | number
+  projetoId?: Prisma.IntFilter<"Tarefa"> | number
   usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
   projeto?: Prisma.XOR<Prisma.ProjetoNullableScalarRelationFilter, Prisma.ProjetoWhereInput> | null
 }, "id">
@@ -277,8 +277,8 @@ export type TarefaOrderByWithAggregationInput = {
   descricao?: Prisma.SortOrder
   data_vencimento?: Prisma.SortOrder
   prioridade?: Prisma.SortOrder
-  usuarioId?: Prisma.SortOrderInput | Prisma.SortOrder
-  projetoId?: Prisma.SortOrderInput | Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
+  projetoId?: Prisma.SortOrder
   _count?: Prisma.TarefaCountOrderByAggregateInput
   _avg?: Prisma.TarefaAvgOrderByAggregateInput
   _max?: Prisma.TarefaMaxOrderByAggregateInput
@@ -295,8 +295,8 @@ export type TarefaScalarWhereWithAggregatesInput = {
   descricao?: Prisma.StringWithAggregatesFilter<"Tarefa"> | string
   data_vencimento?: Prisma.DateTimeWithAggregatesFilter<"Tarefa"> | Date | string
   prioridade?: Prisma.StringWithAggregatesFilter<"Tarefa"> | string
-  usuarioId?: Prisma.IntNullableWithAggregatesFilter<"Tarefa"> | number | null
-  projetoId?: Prisma.IntNullableWithAggregatesFilter<"Tarefa"> | number | null
+  usuarioId?: Prisma.IntWithAggregatesFilter<"Tarefa"> | number
+  projetoId?: Prisma.IntWithAggregatesFilter<"Tarefa"> | number
 }
 
 export type TarefaCreateInput = {
@@ -314,8 +314,8 @@ export type TarefaUncheckedCreateInput = {
   descricao: string
   data_vencimento: Date | string
   prioridade: string
-  usuarioId?: number | null
-  projetoId?: number | null
+  usuarioId: number
+  projetoId: number
 }
 
 export type TarefaUpdateInput = {
@@ -333,8 +333,8 @@ export type TarefaUncheckedUpdateInput = {
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prioridade?: Prisma.StringFieldUpdateOperationsInput | string
-  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  projetoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
+  projetoId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type TarefaCreateManyInput = {
@@ -343,8 +343,8 @@ export type TarefaCreateManyInput = {
   descricao: string
   data_vencimento: Date | string
   prioridade: string
-  usuarioId?: number | null
-  projetoId?: number | null
+  usuarioId: number
+  projetoId: number
 }
 
 export type TarefaUpdateManyMutationInput = {
@@ -360,8 +360,8 @@ export type TarefaUncheckedUpdateManyInput = {
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prioridade?: Prisma.StringFieldUpdateOperationsInput | string
-  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  projetoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
+  projetoId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type TarefaListRelationFilter = {
@@ -462,14 +462,6 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type TarefaCreateNestedManyWithoutProjetoInput = {
   create?: Prisma.XOR<Prisma.TarefaCreateWithoutProjetoInput, Prisma.TarefaUncheckedCreateWithoutProjetoInput> | Prisma.TarefaCreateWithoutProjetoInput[] | Prisma.TarefaUncheckedCreateWithoutProjetoInput[]
   connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutProjetoInput | Prisma.TarefaCreateOrConnectWithoutProjetoInput[]
@@ -526,7 +518,7 @@ export type TarefaUncheckedCreateWithoutUsuarioInput = {
   descricao: string
   data_vencimento: Date | string
   prioridade: string
-  projetoId?: number | null
+  projetoId: number
 }
 
 export type TarefaCreateOrConnectWithoutUsuarioInput = {
@@ -564,8 +556,8 @@ export type TarefaScalarWhereInput = {
   descricao?: Prisma.StringFilter<"Tarefa"> | string
   data_vencimento?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
   prioridade?: Prisma.StringFilter<"Tarefa"> | string
-  usuarioId?: Prisma.IntNullableFilter<"Tarefa"> | number | null
-  projetoId?: Prisma.IntNullableFilter<"Tarefa"> | number | null
+  usuarioId?: Prisma.IntFilter<"Tarefa"> | number
+  projetoId?: Prisma.IntFilter<"Tarefa"> | number
 }
 
 export type TarefaCreateWithoutProjetoInput = {
@@ -582,7 +574,7 @@ export type TarefaUncheckedCreateWithoutProjetoInput = {
   descricao: string
   data_vencimento: Date | string
   prioridade: string
-  usuarioId?: number | null
+  usuarioId: number
 }
 
 export type TarefaCreateOrConnectWithoutProjetoInput = {
@@ -617,7 +609,7 @@ export type TarefaCreateManyUsuarioInput = {
   descricao: string
   data_vencimento: Date | string
   prioridade: string
-  projetoId?: number | null
+  projetoId: number
 }
 
 export type TarefaUpdateWithoutUsuarioInput = {
@@ -634,7 +626,7 @@ export type TarefaUncheckedUpdateWithoutUsuarioInput = {
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prioridade?: Prisma.StringFieldUpdateOperationsInput | string
-  projetoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  projetoId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type TarefaUncheckedUpdateManyWithoutUsuarioInput = {
@@ -643,7 +635,7 @@ export type TarefaUncheckedUpdateManyWithoutUsuarioInput = {
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prioridade?: Prisma.StringFieldUpdateOperationsInput | string
-  projetoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  projetoId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type TarefaCreateManyProjetoInput = {
@@ -652,7 +644,7 @@ export type TarefaCreateManyProjetoInput = {
   descricao: string
   data_vencimento: Date | string
   prioridade: string
-  usuarioId?: number | null
+  usuarioId: number
 }
 
 export type TarefaUpdateWithoutProjetoInput = {
@@ -669,7 +661,7 @@ export type TarefaUncheckedUpdateWithoutProjetoInput = {
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prioridade?: Prisma.StringFieldUpdateOperationsInput | string
-  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type TarefaUncheckedUpdateManyWithoutProjetoInput = {
@@ -678,7 +670,7 @@ export type TarefaUncheckedUpdateManyWithoutProjetoInput = {
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prioridade?: Prisma.StringFieldUpdateOperationsInput | string
-  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -755,8 +747,8 @@ export type $TarefaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     descricao: string
     data_vencimento: Date
     prioridade: string
-    usuarioId: number | null
-    projetoId: number | null
+    usuarioId: number
+    projetoId: number
   }, ExtArgs["result"]["tarefa"]>
   composites: {}
 }

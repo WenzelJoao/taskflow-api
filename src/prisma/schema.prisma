@@ -24,9 +24,9 @@ model Tarefa {
   descricao       String
   data_vencimento DateTime
   prioridade      String
-  usuarioId       Int?
+  usuarioId       Int
   usuario         Usuario? @relation(fields: [usuarioId], references: [id])
-  projetoId       Int?
+  projetoId       Int
   projeto         Projeto? @relation(fields: [projetoId], references: [id])
 
   @@map("Tarefa")

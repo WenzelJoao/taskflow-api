@@ -1,5 +1,5 @@
 import { prisma } from "../prisma/prisma";
-import type { PrismaClient, Prisma, Usuario, Tarefa } from "../prisma/generated/prisma/client";
+import type { PrismaClient, Tarefa } from "../prisma/generated/prisma/client";
 
 export class TarefaRepository {
   constructor(private readonly prisma: PrismaClient) {
@@ -16,15 +16,15 @@ export class TarefaRepository {
 
   async criarTarefa(dadosTarefa: any) {
 
-    console.log("criando tarefa", dadosTarefa);
+    console.log("criando tarefa", dadosTarefa)
     return await this.prisma.tarefa.create({
       data: {
         titulo: dadosTarefa.titulo || "",
         descricao: dadosTarefa.descricao || "",
         data_vencimento: dadosTarefa.data_vencimento ? new Date(String(dadosTarefa.data_vencimento)) : new Date(),
         prioridade: dadosTarefa.prioridade || "Média",
-        usuarioId: dadosTarefa.usuarioId || undefined,
-        projetoId: dadosTarefa.projetoId || undefined
+        usuarioId:  1,
+        projetoId:  1
       }
     })
   }

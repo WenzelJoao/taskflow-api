@@ -1,39 +1,64 @@
-import { Request, Response } from "express";
-import * as service from "../services/tarefaService";
+import type { Request, Response } from "express";
+import { TarefaService, tarefaService } from "../services/tarefaService";
 
-export const create = async (req: Request, res: Response) => {
-  try {
-    const tarefa = await service.criarTarefa(req.body);
-    res.status(201).json(tarefa);
-  } catch (err: any) {
-    res.status(400).json({ error: err.message });
-  }
-};
+class TarefaController {
+    constructor(private readonly service: TarefaService) {}
 
-export const list = async (_req: Request, res: Response) => {
-  const tarefas = await service.listTarefas();
-  res.json(tarefas);
-};
+    async listarTodasTarefas(_: Request, res: Response) {
+        try {
+            const tarefas = await this.service.Tarefas();
+            return res.status(200).json(tarefas);
+        } catch (error) {
+            console.log(error);
+            return res.status(404).json({ error });
+        }
+    }
 
-export const get = async (req: Request, res: Response) => {
-  const id = Number(req.params.id);
-  const tarefa = await service.getTarefa(id);
-  if (!tarefa) return res.status(404).json({ error: "Not found" });
-  res.json(tarefa);
-};
+    async criarTarefa(req: Request, res: Response) {
+        try {
+            const dados = req.body;
+            const tarefaCriada = await this.service.criarTarefa(dados);
+            return res.status(201).json(tarefaCriada);
+        } catch (error: any) {
+            console.log(error);
+            return res.status(400).json({ error: error.message ?? error });
+        }
+    }
 
-export const update = async (req: Request, res: Response) => {
-  try {
-    const id = Number(req.params.id);
-    const updated = await service.editTarefa(id, req.body);
-    res.json(updated);
-  } catch (err: any) {
-    res.status(400).json({ error: err.message ?? String(err) });
-  }
-};
+    async buscarTarefaId(req: Request, res: Response) {
+        try {
+            const id = Number(req.params.id);
+            const tarefa = await this.service.tarefaId(id);
+            if (!tarefa) return res.status(404).json({ error: "Not found" });
+            return res.status(200).json(tarefa);
+        } catch (error) {
+            console.log(error);
+            return res.status(404).json({ error });
+        }
+    }
 
-export const remove = async (req: Request, res: Response) => {
-  const id = Number(req.params.id);
-  await service.removeTarefa(id);
-  res.status(204).send();
-};
+    async atualizarTarefa(req: Request, res: Response) {
+        try {
+            const id = Number(req.params.id);
+            const dadosParaAtualizar = req.body;
+            const tarefaAtualizada = await this.service.editTarefa(id, dadosParaAtualizar);
+            return res.status(200).json(tarefaAtualizada);
+        } catch (error: any) {
+            console.log(error);
+            return res.status(400).json({ error: error.message ?? String(error) });
+        }
+    }
+
+    async deletarTarefa(req: Request, res: Response) {
+        try {
+            const id = Number(req.params.id);
+            await this.service.removeTarefa(id);
+            return res.status(204).send();
+        } catch (error) {
+            console.log(error);
+            return res.status(404).json({ error });
+        }
+    }
+}
+
+export const tarefaController = new TarefaController(tarefaService);
