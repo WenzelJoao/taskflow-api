@@ -12,8 +12,9 @@ model Usuario {
   email   String   @unique
   nome    String?
   senha   String
+  role    String   @default("USER")
   tokens  Token[]
-  tarefas Tarefa[] 
+  tarefas Tarefa[]
 
   @@map("Usuario")
 }
@@ -24,9 +25,9 @@ model Tarefa {
   descricao        String
   data_vencimento  DateTime
   prioridade       String
-  usuarioId        Int?     
+  usuarioId        Int?
   usuario          Usuario? @relation(fields: [usuarioId], references: [id])
-  projetoId        Int?    
+  projetoId        Int?
   projeto          Projeto? @relation(fields: [projetoId], references: [id])
 
   @@map("Tarefa")
@@ -39,6 +40,8 @@ model Projeto {
   data_criacao DateTime @default(now())
   data_vencimento DateTime 
   descricao String
+
+  tarefas Tarefa[]
 
   @@map("Projeto")
 }

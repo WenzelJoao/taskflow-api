@@ -1,0 +1,96 @@
+import type { Usuario } from "../../../prisma/generated/prisma/client";
+import { createHash } from "../../../utils/createHash"
+import bcrypt from "bcrypt";
+import { signTokenAcesso, signTokenRefresh } from "../../../utils/jwt";
+import { AuthRepository, authRepository } from "../repositories/AuthRepository";
+
+export class AuthService {
+    constructor(private readonly repository: AuthRepository) { // TO-DO TIPAR SERVICE
+    }
+
+    async cadastrar(dadosUsuario: Usuario) {
+
+        const usuarioExiste =
+            await this.repository.existeUsuario(
+                dadosUsuario.email || ""
+            );
+
+        if (usuarioExiste) {
+            throw new Error("Usuário já cadastrado");
+        }
+
+
+        const hash = await createHash(dadosUsuario.senha);
+
+        const usuarioCriado = await this.repository.cadastrar({
+            email: dadosUsuario.email,
+            nome: dadosUsuario.nome || null,
+            senha: hash
+        })
+        return usuarioCriado
+    }
+
+    async editar(id: number, dadosUsuario: Partial<Usuario>) {
+
+        if (dadosUsuario.senha) {
+
+            const hash = await createHash(
+                dadosUsuario.senha
+            );
+
+            dadosUsuario.senha = hash;
+        }
+
+        return await this.repository.editar(
+            id,
+            dadosUsuario
+        );
+    }
+
+    async logar(dadosUsuario: Partial<Usuario>) {
+        const existeUsuario = await this.repository.existeUsuario(dadosUsuario.email || '')
+        const credenciaisValidas = await bcrypt.compare(dadosUsuario.senha || "", existeUsuario?.senha || "")
+        console.log(existeUsuario, credenciaisValidas, dadosUsuario)
+        if (existeUsuario && credenciaisValidas) {
+            const tokenAcesso = signTokenAcesso({
+                email: existeUsuario.email,
+                nome: existeUsuario.nome
+            })
+            const tokenRefresh = signTokenRefresh({
+                email: existeUsuario.email,
+                nome: existeUsuario.nome
+            })
+
+            const accessExpires = new Date()
+            const accessExpiresUpdate = accessExpires.setHours(accessExpires.getHours() + 1)
+            // acesso create
+            await this.repository.criarToken({
+                token: tokenAcesso,
+                expira_em: new Date(accessExpiresUpdate),
+                tipo: 'ACESSO',
+                usuarioId: existeUsuario.id
+            })
+
+            //refresh create
+            const refreshExpires = new Date()
+            const refreshExpiresUpdated = refreshExpires.setMonth(refreshExpires.getMonth() + 1)
+
+            await this.repository.criarToken({
+                token: tokenRefresh,
+                expira_em: new Date(refreshExpiresUpdated),
+                tipo: 'REFRESH',
+                usuarioId: existeUsuario.id
+            })
+
+            return {
+                tokenAcesso,
+                tokenRefresh
+            }
+        }
+
+        throw new Error("Credenciais inválidas")
+
+    }
+}
+
+export const authService = new AuthService(authRepository)
