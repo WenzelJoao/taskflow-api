@@ -54,6 +54,7 @@ export const ModelName = {
   Usuario: 'Usuario',
   Tarefa: 'Tarefa',
   Projeto: 'Projeto',
+  HistoricoTarefa: 'HistoricoTarefa',
   Token: 'Token'
 } as const
 
@@ -99,13 +100,26 @@ export type TarefaScalarFieldEnum = (typeof TarefaScalarFieldEnum)[keyof typeof 
 export const ProjetoScalarFieldEnum = {
   id: 'id',
   titulo: 'titulo',
+  descricao: 'descricao',
   area_conhecimento: 'area_conhecimento',
-  data_criacao: 'data_criacao',
-  data_vencimento: 'data_vencimento',
-  descricao: 'descricao'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ProjetoScalarFieldEnum = (typeof ProjetoScalarFieldEnum)[keyof typeof ProjetoScalarFieldEnum]
+
+
+export const HistoricoTarefaScalarFieldEnum = {
+  id: 'id',
+  tarefaId: 'tarefaId',
+  usuarioId: 'usuarioId',
+  acao: 'acao',
+  descricao: 'descricao',
+  projetoId: 'projetoId',
+  createdAt: 'createdAt'
+} as const
+
+export type HistoricoTarefaScalarFieldEnum = (typeof HistoricoTarefaScalarFieldEnum)[keyof typeof HistoricoTarefaScalarFieldEnum]
 
 
 export const TokenScalarFieldEnum = {

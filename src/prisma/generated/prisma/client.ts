@@ -57,6 +57,11 @@ export type Tarefa = Prisma.TarefaModel
  */
 export type Projeto = Prisma.ProjetoModel
 /**
+ * Model HistoricoTarefa
+ * 
+ */
+export type HistoricoTarefa = Prisma.HistoricoTarefaModel
+/**
  * Model Token
  * 
  */

@@ -28,6 +28,7 @@ model Tarefa {
   usuario         Usuario? @relation(fields: [usuarioId], references: [id])
   projetoId       Int
   projeto         Projeto? @relation(fields: [projetoId], references: [id])
+  
 
   @@map("Tarefa")
 }
@@ -42,6 +43,21 @@ model Projeto {
   tarefas           Tarefa[]
 
   @@map("Projeto")
+}
+
+model HistoricoTarefa {
+  id        Int      @id @default(autoincrement())
+  tarefaId  Int
+  tarefa    Tarefa   @relation(fields: [tarefaId], references: [id], onDelete: Cascade)
+  usuarioId Int
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
+  acao      String
+  descricao String?
+  projetoId Int
+  projeto   Projeto? @relation(fields: [projetoId], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
+
+  @@map("HistoricoTarefa")
 }
 
 enum Tipo_token {

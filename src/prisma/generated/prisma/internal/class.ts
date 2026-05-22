@@ -219,6 +219,16 @@ export interface PrismaClient<
   get projeto(): Prisma.ProjetoDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
+   * `prisma.historicoTarefa`: Exposes CRUD operations for the **HistoricoTarefa** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more HistoricoTarefas
+    * const historicoTarefas = await prisma.historicoTarefa.findMany()
+    * ```
+    */
+  get historicoTarefa(): Prisma.HistoricoTarefaDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
    * `prisma.token`: Exposes CRUD operations for the **Token** model.
     * Example usage:
     * ```ts

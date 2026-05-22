@@ -1,15 +1,22 @@
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
-import tarefaRoutes from "./routes/tarefaRoutes";
-import { PORT } from "./env";
+
+import {projetoRoutes} from "./routes/ProjetoRoutes";
+import historicoRoutes from "./routes/HistoricoTarefaRoutes";
+import tarefaRouter from "./routes/tarefaRoutes";
 
 const app = express();
+
+app.use(express.json());
 app.use(cors());
-app.use(bodyParser.json());
 
-app.use(tarefaRoutes)
+// Rotas
+app.use(projetoRoutes);
+app.use(historicoRoutes);
+app.use(tarefaRouter)
 
-app.get("/", (_req: any, res: any) => res.json({ status: "ok" }));
+const PORT = 3000;
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});

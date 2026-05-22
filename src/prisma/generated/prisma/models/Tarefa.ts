@@ -352,6 +352,9 @@ export type TarefaUpdateManyMutationInput = {
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   data_vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prioridade?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TarefaUncheckedUpdateManyInput = {
