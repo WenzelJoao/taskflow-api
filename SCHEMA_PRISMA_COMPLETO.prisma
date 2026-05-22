@@ -1,0 +1,86 @@
+-- SCHEMA PRISMA ATUALIZADO
+-- Este é o schema.prisma que foi modificado
+
+generator client {
+  provider = "prisma-client"
+  output   = "../prisma/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Usuario {
+  id        Int                 @id @default(autoincrement())
+  email     String              @unique
+  nome      String?
+  senha     String
+  tokens    Token[]
+  tarefas   Tarefa[]
+  historicos HistoricoTarefa[]
+
+  @@map("Usuario")
+}
+
+model Tarefa {
+  id               Int                 @id @default(autoincrement())
+  titulo           String
+  descricao        String
+  data_vencimento  DateTime
+  prioridade       String
+  status           String              @default("pendente")
+  usuarioId        Int?     
+  usuario          Usuario?            @relation(fields: [usuarioId], references: [id])
+  projetoId        Int?    
+  projeto          Projeto?            @relation(fields: [projetoId], references: [id])
+  historicos       HistoricoTarefa[]
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+
+  @@map("Tarefa")
+}
+
+model Projeto {
+  id                  Int                 @id @default(autoincrement())
+  titulo              String
+  descricao           String?
+  areaConhecimento    String
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  tarefas             Tarefa[]
+  historicos          HistoricoTarefa[]
+
+  @@map("Projeto")
+}
+
+model HistoricoTarefa {
+  id        Int       @id @default(autoincrement())
+  tarefaId  Int
+  tarefa    Tarefa    @relation(fields: [tarefaId], references: [id], onDelete: Cascade)
+  usuarioId Int
+  usuario   Usuario   @relation(fields: [usuarioId], references: [id])
+  acao      String
+  descricao String?
+  projetoId Int?
+  projeto   Projeto?  @relation(fields: [projetoId], references: [id], onDelete: SetNull)
+  createdAt DateTime  @default(now())
+
+  @@map("HistoricoTarefa")
+}
+
+enum Tipo_token {
+  ACESSO
+  REFRESH
+}
+
+model Token {
+  id        Int        @id @default(autoincrement())
+  token     String     @db.VarChar(255)
+  tipo      Tipo_token @default(ACESSO)
+  revogado  Boolean    @default(false)
+  expira_em DateTime
+  usuarioId Int
+  usuario   Usuario    @relation(fields: [usuarioId], references: [id])
+
+  @@map("token")
+}
