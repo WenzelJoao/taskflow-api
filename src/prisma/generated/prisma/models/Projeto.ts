@@ -38,7 +38,7 @@ export type ProjetoMinAggregateOutputType = {
   id: number | null
   titulo: string | null
   descricao: string | null
-  areaConhecimento: string | null
+  area_conhecimento: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -47,7 +47,7 @@ export type ProjetoMaxAggregateOutputType = {
   id: number | null
   titulo: string | null
   descricao: string | null
-  areaConhecimento: string | null
+  area_conhecimento: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -56,7 +56,7 @@ export type ProjetoCountAggregateOutputType = {
   id: number
   titulo: number
   descricao: number
-  areaConhecimento: number
+  area_conhecimento: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -75,7 +75,7 @@ export type ProjetoMinAggregateInputType = {
   id?: true
   titulo?: true
   descricao?: true
-  areaConhecimento?: true
+  area_conhecimento?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -84,7 +84,7 @@ export type ProjetoMaxAggregateInputType = {
   id?: true
   titulo?: true
   descricao?: true
-  areaConhecimento?: true
+  area_conhecimento?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -93,7 +93,7 @@ export type ProjetoCountAggregateInputType = {
   id?: true
   titulo?: true
   descricao?: true
-  areaConhecimento?: true
+  area_conhecimento?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -189,7 +189,7 @@ export type ProjetoGroupByOutputType = {
   id: number
   titulo: string
   descricao: string | null
-  areaConhecimento: string
+  area_conhecimento: string
   createdAt: Date
   updatedAt: Date
   _count: ProjetoCountAggregateOutputType | null
@@ -221,7 +221,7 @@ export type ProjetoWhereInput = {
   id?: Prisma.IntFilter<"Projeto"> | number
   titulo?: Prisma.StringFilter<"Projeto"> | string
   descricao?: Prisma.StringNullableFilter<"Projeto"> | string | null
-  areaConhecimento?: Prisma.StringFilter<"Projeto"> | string
+  area_conhecimento?: Prisma.StringFilter<"Projeto"> | string
   createdAt?: Prisma.DateTimeFilter<"Projeto"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Projeto"> | Date | string
   tarefas?: Prisma.TarefaListRelationFilter
@@ -232,7 +232,7 @@ export type ProjetoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   titulo?: Prisma.SortOrder
   descricao?: Prisma.SortOrderInput | Prisma.SortOrder
-  areaConhecimento?: Prisma.SortOrder
+  area_conhecimento?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   tarefas?: Prisma.TarefaOrderByRelationAggregateInput
@@ -246,7 +246,7 @@ export type ProjetoWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ProjetoWhereInput | Prisma.ProjetoWhereInput[]
   titulo?: Prisma.StringFilter<"Projeto"> | string
   descricao?: Prisma.StringNullableFilter<"Projeto"> | string | null
-  areaConhecimento?: Prisma.StringFilter<"Projeto"> | string
+  area_conhecimento?: Prisma.StringFilter<"Projeto"> | string
   createdAt?: Prisma.DateTimeFilter<"Projeto"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Projeto"> | Date | string
   tarefas?: Prisma.TarefaListRelationFilter
@@ -257,7 +257,7 @@ export type ProjetoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   titulo?: Prisma.SortOrder
   descricao?: Prisma.SortOrderInput | Prisma.SortOrder
-  areaConhecimento?: Prisma.SortOrder
+  area_conhecimento?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ProjetoCountOrderByAggregateInput
@@ -274,7 +274,7 @@ export type ProjetoScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Projeto"> | number
   titulo?: Prisma.StringWithAggregatesFilter<"Projeto"> | string
   descricao?: Prisma.StringNullableWithAggregatesFilter<"Projeto"> | string | null
-  areaConhecimento?: Prisma.StringWithAggregatesFilter<"Projeto"> | string
+  area_conhecimento?: Prisma.StringWithAggregatesFilter<"Projeto"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Projeto"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Projeto"> | Date | string
 }
@@ -282,7 +282,7 @@ export type ProjetoScalarWhereWithAggregatesInput = {
 export type ProjetoCreateInput = {
   titulo: string
   descricao?: string | null
-  areaConhecimento: string
+  area_conhecimento: string
   createdAt?: Date | string
   updatedAt?: Date | string
   tarefas?: Prisma.TarefaCreateNestedManyWithoutProjetoInput
@@ -293,7 +293,7 @@ export type ProjetoUncheckedCreateInput = {
   id?: number
   titulo: string
   descricao?: string | null
-  areaConhecimento: string
+  area_conhecimento: string
   createdAt?: Date | string
   updatedAt?: Date | string
   tarefas?: Prisma.TarefaUncheckedCreateNestedManyWithoutProjetoInput
@@ -303,7 +303,7 @@ export type ProjetoUncheckedCreateInput = {
 export type ProjetoUpdateInput = {
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  areaConhecimento?: Prisma.StringFieldUpdateOperationsInput | string
+  area_conhecimento?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tarefas?: Prisma.TarefaUpdateManyWithoutProjetoNestedInput
@@ -314,7 +314,7 @@ export type ProjetoUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  areaConhecimento?: Prisma.StringFieldUpdateOperationsInput | string
+  area_conhecimento?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tarefas?: Prisma.TarefaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -325,7 +325,7 @@ export type ProjetoCreateManyInput = {
   id?: number
   titulo: string
   descricao?: string | null
-  areaConhecimento: string
+  area_conhecimento: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -333,7 +333,7 @@ export type ProjetoCreateManyInput = {
 export type ProjetoUpdateManyMutationInput = {
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  areaConhecimento?: Prisma.StringFieldUpdateOperationsInput | string
+  area_conhecimento?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -342,7 +342,7 @@ export type ProjetoUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  areaConhecimento?: Prisma.StringFieldUpdateOperationsInput | string
+  area_conhecimento?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -356,7 +356,7 @@ export type ProjetoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   titulo?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
-  areaConhecimento?: Prisma.SortOrder
+  area_conhecimento?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -369,7 +369,7 @@ export type ProjetoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   titulo?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
-  areaConhecimento?: Prisma.SortOrder
+  area_conhecimento?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -378,7 +378,7 @@ export type ProjetoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   titulo?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
-  areaConhecimento?: Prisma.SortOrder
+  area_conhecimento?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -422,7 +422,7 @@ export type ProjetoUpdateOneWithoutHistoricosNestedInput = {
 export type ProjetoCreateWithoutTarefasInput = {
   titulo: string
   descricao?: string | null
-  areaConhecimento: string
+  area_conhecimento: string
   createdAt?: Date | string
   updatedAt?: Date | string
   historicos?: Prisma.HistoricoTarefaCreateNestedManyWithoutProjetoInput
@@ -432,7 +432,7 @@ export type ProjetoUncheckedCreateWithoutTarefasInput = {
   id?: number
   titulo: string
   descricao?: string | null
-  areaConhecimento: string
+  area_conhecimento: string
   createdAt?: Date | string
   updatedAt?: Date | string
   historicos?: Prisma.HistoricoTarefaUncheckedCreateNestedManyWithoutProjetoInput
@@ -457,7 +457,7 @@ export type ProjetoUpdateToOneWithWhereWithoutTarefasInput = {
 export type ProjetoUpdateWithoutTarefasInput = {
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  areaConhecimento?: Prisma.StringFieldUpdateOperationsInput | string
+  area_conhecimento?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   historicos?: Prisma.HistoricoTarefaUpdateManyWithoutProjetoNestedInput
@@ -467,7 +467,7 @@ export type ProjetoUncheckedUpdateWithoutTarefasInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  areaConhecimento?: Prisma.StringFieldUpdateOperationsInput | string
+  area_conhecimento?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   historicos?: Prisma.HistoricoTarefaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -476,7 +476,7 @@ export type ProjetoUncheckedUpdateWithoutTarefasInput = {
 export type ProjetoCreateWithoutHistoricosInput = {
   titulo: string
   descricao?: string | null
-  areaConhecimento: string
+  area_conhecimento: string
   createdAt?: Date | string
   updatedAt?: Date | string
   tarefas?: Prisma.TarefaCreateNestedManyWithoutProjetoInput
@@ -486,7 +486,7 @@ export type ProjetoUncheckedCreateWithoutHistoricosInput = {
   id?: number
   titulo: string
   descricao?: string | null
-  areaConhecimento: string
+  area_conhecimento: string
   createdAt?: Date | string
   updatedAt?: Date | string
   tarefas?: Prisma.TarefaUncheckedCreateNestedManyWithoutProjetoInput
@@ -511,7 +511,7 @@ export type ProjetoUpdateToOneWithWhereWithoutHistoricosInput = {
 export type ProjetoUpdateWithoutHistoricosInput = {
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  areaConhecimento?: Prisma.StringFieldUpdateOperationsInput | string
+  area_conhecimento?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tarefas?: Prisma.TarefaUpdateManyWithoutProjetoNestedInput
@@ -521,7 +521,7 @@ export type ProjetoUncheckedUpdateWithoutHistoricosInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  areaConhecimento?: Prisma.StringFieldUpdateOperationsInput | string
+  area_conhecimento?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tarefas?: Prisma.TarefaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -571,7 +571,7 @@ export type ProjetoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   titulo?: boolean
   descricao?: boolean
-  areaConhecimento?: boolean
+  area_conhecimento?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   tarefas?: boolean | Prisma.Projeto$tarefasArgs<ExtArgs>
@@ -583,7 +583,7 @@ export type ProjetoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   titulo?: boolean
   descricao?: boolean
-  areaConhecimento?: boolean
+  area_conhecimento?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["projeto"]>
@@ -592,7 +592,7 @@ export type ProjetoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   titulo?: boolean
   descricao?: boolean
-  areaConhecimento?: boolean
+  area_conhecimento?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["projeto"]>
@@ -601,12 +601,12 @@ export type ProjetoSelectScalar = {
   id?: boolean
   titulo?: boolean
   descricao?: boolean
-  areaConhecimento?: boolean
+  area_conhecimento?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProjetoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "titulo" | "descricao" | "areaConhecimento" | "createdAt" | "updatedAt", ExtArgs["result"]["projeto"]>
+export type ProjetoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "titulo" | "descricao" | "area_conhecimento" | "createdAt" | "updatedAt", ExtArgs["result"]["projeto"]>
 export type ProjetoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tarefas?: boolean | Prisma.Projeto$tarefasArgs<ExtArgs>
   historicos?: boolean | Prisma.Projeto$historicosArgs<ExtArgs>
@@ -625,7 +625,7 @@ export type $ProjetoPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: number
     titulo: string
     descricao: string | null
-    areaConhecimento: string
+    area_conhecimento: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["projeto"]>
@@ -1056,7 +1056,7 @@ export interface ProjetoFieldRefs {
   readonly id: Prisma.FieldRef<"Projeto", 'Int'>
   readonly titulo: Prisma.FieldRef<"Projeto", 'String'>
   readonly descricao: Prisma.FieldRef<"Projeto", 'String'>
-  readonly areaConhecimento: Prisma.FieldRef<"Projeto", 'String'>
+  readonly area_conhecimento: Prisma.FieldRef<"Projeto", 'String'>
   readonly createdAt: Prisma.FieldRef<"Projeto", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Projeto", 'DateTime'>
 }

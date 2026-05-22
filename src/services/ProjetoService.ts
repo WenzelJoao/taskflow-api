@@ -16,14 +16,14 @@ export class ProjetoService {
             throw new Error("Título do projeto é obrigatório");
         }
 
-        if (!dadosProjeto.areaConhecimento || dadosProjeto.areaConhecimento.trim() === "") {
+        if (!dadosProjeto.area_conhecimento || dadosProjeto.area_conhecimento.trim() === "") {
             throw new Error("Área de conhecimento é obrigatória");
         }
 
         const projetoCriado = await this.repository.criarProjeto({
             titulo: dadosProjeto.titulo,
             descricao: dadosProjeto.descricao,
-            areaConhecimento: dadosProjeto.areaConhecimento
+            area_conhecimento: dadosProjeto.area_conhecimento
         })
 
         return projetoCriado
@@ -63,8 +63,8 @@ export class ProjetoService {
         }
 
         if (
-            dadosParaAtualizar.areaConhecimento !== undefined &&
-            dadosParaAtualizar.areaConhecimento.trim() === ""
+            dadosParaAtualizar.area_conhecimento !== undefined &&
+            dadosParaAtualizar.area_conhecimento.trim() === ""
         ) {
             throw new Error("Área de conhecimento não pode estar vazia");
         }

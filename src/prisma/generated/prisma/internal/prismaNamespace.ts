@@ -847,7 +847,7 @@ export const ProjetoScalarFieldEnum = {
   id: 'id',
   titulo: 'titulo',
   descricao: 'descricao',
-  areaConhecimento: 'areaConhecimento',
+  area_conhecimento: 'area_conhecimento',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

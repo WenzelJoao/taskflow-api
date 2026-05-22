@@ -60,7 +60,7 @@ export class ProjetoRepository {
             data: {
                 titulo: dadosProjeto.titulo || "",
                 descricao: dadosProjeto.descricao || "",
-                areaConhecimento: dadosProjeto.areaConhecimento || ""
+                area_conhecimento: dadosProjeto.area_conhecimento || ""
             }
         });
     }
